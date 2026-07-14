@@ -1,0 +1,80 @@
+[{
+  "_id": {
+    "$oid": "6a558ced1f7884a89644152e"
+  },
+  "firstName": "Khaled",
+  "lastName": "Rami",
+  "age": 20,
+  "faculty": {
+    "name": "computer science",
+    "address": "10th of ramadan city"
+  },
+  "grades": [
+    {
+      "courseName": "CS101",
+      "grade": 3,
+      "pass": true
+    }
+  ],
+  "isFired": false
+},
+{
+  "_id": {
+    "$oid": "6a558ced1f7884a89644152f"
+  },
+  "firstName": "Yusuf",
+  "lastName": "Mukhtar",
+  "age": 25,
+  "faculty": {
+    "name": "Mathematics",
+    "address": "10th of ramadan city"
+  },
+  "grades": [
+    {
+      "courseName": "M101",
+      "grade": 2,
+      "pass": true
+    }
+  ],
+  "isFired": false
+},
+{
+  "_id": {
+    "$oid": "6a558ced1f7884a896441530"
+  },
+  "firstName": "Abdo",
+  "lastName": "Rami",
+  "age": 25,
+  "faculty": {
+    "name": "Arts",
+    "address": "Cairo"
+  },
+  "grades": [
+    {
+      "courseName": "A101",
+      "grade": 1,
+      "pass": true
+    }
+  ],
+  "isFired": false
+},
+{
+  "_id": {
+    "$oid": "6a558d3a813418bd3344152e"
+  },
+  "firstName": "Yusuf",
+  "lastName": "Muahmed",
+  "age": 25,
+  "faculty": {
+    "name": "computer science",
+    "address": "10th of ramadan city"
+  },
+  "grades": [
+    {
+      "courseName": "CS101",
+      "grade": 3,
+      "pass": true
+    }
+  ],
+  "isFired": false
+}]
