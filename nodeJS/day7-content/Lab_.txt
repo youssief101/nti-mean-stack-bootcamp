@@ -1,0 +1,5 @@
+- try to use any template engine to handle views in your api 
+-try to use swagger to make a documentation and also test your api
+
+
+

@@ -1,0 +1,111 @@
+$in  && $ nin
+-> it will return ALL the documents that contain any of these colors red or black or both of them 
+db.collection.find({tags: {$in: ['red' , 'black']}})
+__________________
+
+$not
+db.collectionName.find({age :  {$not : { $lt: 10}}   } )  // it will return all not whos age is lt 10
+$nor
+db.collectionName.find( {$nor: [{title: '  ' } , {title: '  ' } ]} )
+
+$exists
+db.collection.find( { qty: { $exists: true } } )  // return the documents that qty exsists on them
+ __________________
+
+$type
+db.data.find( {age: { $type: "string" } } )
+__________________
+
+$regex
+db.collection.find({ name: { $regex: /n/i} })
+
+
+Array Methods
+db.collection.find({tags: ['red' , ' black']}) // return all that contain red and black in the same order not more 
+__________________
+$all  
+-> it will return ALL that contain red and black without order 
+db.collction.find({tags: {$all: ['red' , 'black']}})
+__________________
+
+db.collection.find({dim_cm: {$gt: 15 , $lt:20 }}) // it will return any document match any of  these conditions if it gt or lt it will return 
+
+$elementMatch
+-> it will return the elements that match both of  these conditions not one of them 
+db.collection.find({dim_cm:  {$elemMatch: {$gt: 15 , $lt:20 } } })
+__________________
+$size
+db.collection.find({tags: {$size: 2}})  // return docments that tags contain 2 elements
+__________________
+
+access elements in array by it's INDEX || the same thing with nested Objects 
+db.collection.find({"tags.3" : "red"})
+__________________
+
+
+Aggregation
+
+
+[
+  { "_id": 1, "customer": "Alice", "amount": 200, "status": "delivered" },
+  { "_id": 2, "customer": "Bob", "amount": 150, "status": "pending" },
+  { "_id": 3, "customer": "Alice", "amount": 300, "status": "delivered" },
+  { "_id": 4, "customer": "Bob", "amount": 100, "status": "delivered" },
+  { "_id": 5, "customer": "Charlie", "amount": 400, "status": "pending" }
+]
+
+db.collection.aggregate([
+  { $match: { <filter_conditions> } },
+  {
+    $group: {
+      _id: <group_by_field>,
+      <newField>: { <accumulator>: <expression> }
+    }
+  }
+])
+
+
+db.orders.aggregate([
+  { $match: { status: "delivered" } } 
+])
+
+db.orders.aggregate([
+ 	 {$group: { _id: "$customer", totalAmount: { $sum: "$amount" }}},
+ 	{$group: { _id: "$customer", totalAmount: { $sum: "$amount" } ,  avgAmount: {$avg: "$amount"}}},
+	 { $project: { _id: 0, customer: 1, amountWithTax: { $multiply: ["$amount", 1.1] } } }
+])
+
+
+db.orders.aggregate([
+  	{ $match: { status: "delivered" } },
+  	{ $group: { _id: "$customer", totalDelivered: { $sum: "$amount" }}},
+	{ $sort: {total: -1},
+	{ $limit: 3 }
+	{$project: {_id: 0} }
+])
+
+
+
+Index
+
+db.users.createIndex({ age: 1 } , {unique :  true } )
+	1 means ascending order
+	-1 would mean descending order
+
+db.users.getIndexes()
+
+db.users.dropIndex("age_1")
+
+db.users.createIndex({ name: 1, age: -1 })
+
+
+
+mongodump --db=myDatabaseName   --out=./dump
+mongorestore --db=myDatabase
+
+
+
+
+
+
+

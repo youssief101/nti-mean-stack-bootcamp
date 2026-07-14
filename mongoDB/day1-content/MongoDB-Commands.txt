@@ -1,0 +1,46 @@
+> show dbs
+> db
+> use dbName
+> db.createCollection("collectionName")
+> show collections
+> db.collectionName.drop()
+> db.collectionName.find().pretty()
+> db.collectionName.find({condition})
+> db.collectionName.find({condition}, {Projection})
+.find().limit(number)
+.find().skip(number) 
+.find().sort({key: 1})
+
+> db.collectionName.insertOne({document}) | insertMany ( [ {  }, {  } ] )
+
+> db.tutorial.updateOne({title: 'MongoDB'},{$set: {by: 'UpdatedByAli'}})
+> db.collectionName.updateOne({title: 'iphone'},{$set: {price: 23 , newField: 'added if no exsits or updated if  found ' } } )
+> db.collectionName.updateMany({condition}, {$set: {}})
+
+> db.collectionName.deleteOne({ codition })
+> db.collectionName.deleteMany({ codition })
+
+> db.collectionName.drop()
+> db.dropDatabase()
+
+Comparison Query Operators : 
+
+$ne  ==> not equal 	db.collectionName.find( { age:  { $ne: 25 }  } )
+$or  ==> or	db.collectionName.find( { $or:  [ {  } , {  }  ] } )
+and  ==> and	db.collectionName.find( { $and: [ { age: { $gte: 18 } }, { age: { $lte: 30 } }  ] } )
+OR like this 	db.collectionName.find({age: { $gte: 18, $lte: 30 }})
+$lt  ==> less that	db.collectionName.find({ salary: { $lt: 5000 } })
+$gt  ==>greater that	 db.collectionName.find({ age: { $gt: 40 } })
+$lte ==> less that or equal	db.collectionName.find({ age: { $lte: 18 } })
+$gte ==> greater that or equal   db.collectionName.find({ price: { $gte: 100 } })
+
+> db.tutorial.find({enrolled: {$gt: 50}})
+> db.tutorial.find({$or:[{title: 'Angular'},{by: 'ITI'}]}) 
+
+
+
+
+
+
+
+

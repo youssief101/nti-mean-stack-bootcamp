@@ -1,0 +1,5 @@
+1- hashing password before creating the user
+2-Login endpoint >> response must contain access token and refresh token
+3-Authentication  middleware 
+4-Authorization middleware
+5-Refresh token endpoint
