@@ -1,0 +1,15 @@
+- install angular cli :
+	npm install @angular/cli -g  => last V
+	npm install -g @angular/cli@VNumber
+To Create/Excute Project with specfic V
+	npx @angular/cli@17 new my-angular17-app --no-standalone
+
+- check angular version :
+	 ng --version  => angular version
+	ng v  => angular cli
+
+- to create project without stanalone :
+	ng new appName --no-standalone
+
+
+- run project :  =>  ng serve
