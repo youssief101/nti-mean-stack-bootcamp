@@ -1,0 +1,53 @@
+<h1>{{store.Name}}</h1>
+
+<!--
+@youssef: the structural directive *ngIf causes the html element
+to be built only if the condition is true.
+-->
+<img [src]="store.Logo" width="250" *ngIf="!IsPurchased">
+
+<!-- <p>Welcome {{ClientName}}</p> -->
+<!-- <p>Current Offer: {{Discount}}</p> -->
+
+<h3 *ngIf="Discount != 'No Discount'">We offer an explicit discount of {{Discount}}</h3>
+
+<div *ngIf="IsPurchased">
+  <h2>Thanks for purchasing from our Store {{ClientName}}!</h2>
+</div>
+
+<input class="form-control" [(ngModel)]="ClientName" placeholder="Enter your name">
+
+<select class="form-select" [(ngModel)]="SelectedCategoryID">
+  <option value="0">All Categories</option>
+  <option *ngFor="let cat of CategoryList" [value]="cat.ID">{{cat.Name}}</option>
+</select>
+
+<table class="table table-bordered mt-3">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Price</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+
+  <tr *ngFor="let p of ProductList" [hidden]="SelectedCategoryID != 0 && p.CategoryID != SelectedCategoryID">
+    <td>{{p.ID}}</td>
+    <td>{{p.Name}}</td>
+    <td><img [src]="p.Img" width="80"></td>
+    <td>{{p.Price}}</td>
+    <td>{{p.Quantity}}</td>
+    <td>
+      <div [ngSwitch]="p.Quantity">
+	<span *ngSwitchCase="0">Out of Stock</span>
+	<span *ngSwitchCase="1">Last Item</span>
+	<span *ngSwitchCase="2">Last Two Items</span>
+	<span *ngSwitchDefault>In Stock</span>
+      </div>
+    </td>
+    <td>
+      <button class="btn btn-success" (click)="Buy(p)" [disabled]="p.Quantity == 0">Buy</button>
+    </td>
+  </tr>
+</table>
