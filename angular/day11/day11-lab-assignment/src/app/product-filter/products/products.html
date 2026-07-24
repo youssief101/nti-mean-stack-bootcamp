@@ -1,0 +1,89 @@
+<h1>{{store.Name}}</h1>
+
+<!--
+@youssef: the structural directive *ngIf causes the html element
+to be built only if the condition is true.
+-->
+<img [src]="store.Logo" width="250" *ngIf="!IsPurchased">
+
+<h4>Credit Card: {{CreditCard | creditCard}}</h4>
+
+<!-- <p>Welcome {{ClientName}}</p> -->
+<!-- <p>Current Offer: {{Discount}}</p> -->
+
+<h3 *ngIf="Discount != 'No Discount'">We offer an explicit discount of {{Discount}}</h3>
+
+<div *ngIf="IsPurchased">
+  <h2>Thanks for purchasing from our Store {{ClientName}}!</h2>
+</div>
+
+<input class="form-control" [(ngModel)]="ClientName" placeholder="Enter your name">
+
+<select class="form-select" [(ngModel)]="SelectedCategoryID">
+  <option value="0">All Categories</option>
+  <option *ngFor="let cat of CategoryList" [value]="cat.ID">{{cat.Name}}</option>
+</select>
+
+<table class="table table-bordered mt-3">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Price</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+
+  <tr appProductCard
+      *ngFor="let p of FilteredProducts"
+      [ngClass]="{'highlight-row': p.Quantity == 1}"
+      [hidden]="SelectedCategoryID != 0 && p.CategoryID != SelectedCategoryID">
+    <td>{{p.ID}}</td>
+    <td>{{p.Name}}</td>
+    <td><img [src]="p.Img" width="80"></td>
+    <td>{{p.Price | currency: 'EGP'}}</td>
+    <td>
+      @switch(p.Quantity) {
+      @case(0) {
+      <span class="text-danger">Out Of Stock</span>
+      }
+      @case(1) {
+      <span class="text-warning">Last Item</span>
+      }
+      @case(2) {
+      <span class="text-warning">Last Two Item</span>
+      }
+      @default {
+      In Stock ({{p.Quantity}})
+      }
+      }
+    </td>
+    <td>
+      <div [ngSwitch]="p.Quantity">
+	<span *ngSwitchCase="0">Out of Stock</span>
+	<span *ngSwitchCase="1">Last Item</span>
+	<span *ngSwitchCase="2">Last Two Items</span>
+	<span *ngSwitchDefault>In Stock</span>
+      </div>
+    </td>
+    <td>
+      <button class="btn btn-success" (click)="Buy(p)" [disabled]="p.Quantity == 0">Buy</button>
+    </td>
+  </tr>
+</table>
+
+<h5>Purchase Date: {{PurchaseDate | date: 'medium'}}</h5>
+
+<!-- @yusuf:
+  There are four types of binding
+  Interpolation: {{ }}      OneWay: TypeScript => HTML
+  Property Binding: [ ]     OneWay: TypeScript => HTML
+  Event Binding: ( )        OneWay: HTML => TypeScript
+  Two-Way Binding: [ ( ) ]  TwoWays: HTML <=> TypeScript
+-->
+
+<!-- @yusuf:
+  Structural Directives: can change (add/remove) structure of HTML (*ngIf, *nfFor, @if, @for, @switch)
+  Attribute Directives: can modif existing elements (ngClass, ngStyle, ngSwitch)
+  Custom Directive: a drective that I've written by myself
+-->
