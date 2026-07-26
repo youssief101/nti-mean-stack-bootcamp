@@ -1,0 +1,32 @@
+exports.getToDos = async(req, res) => {
+    try {
+	let todos = await todoModel.find();
+	let {limit, skip} = req.query;
+
+	limit = Number(limit);
+	skip = Number(skip);
+
+	if (isNaN(limit)) {
+	    limit = todos.length;
+	}
+	if (isNaN(skip)) {
+	    skip = 0;
+	}
+
+	let result = todos.slice(skip, skip + limit);
+
+	if (!todos) {
+	    return res.status(404).json({message: "Not Found"});
+	}
+
+	res.status(200).json({
+	    message: "Sucessfull",
+	    total: todos.length,
+	    count: result.length,
+	    data: result
+	});
+	
+    } catch(error) {
+	res.status(500).json({message: "Error", error: error.message});
+    }
+};
