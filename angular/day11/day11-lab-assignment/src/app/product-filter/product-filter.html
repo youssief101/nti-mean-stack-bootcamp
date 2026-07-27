@@ -1,8 +1,4 @@
-<input
-  type="number"
-  class="form-control"
-  [(ngModel)]="Filter">
-
 <app-products
-  [FilterPrice]="Filter">
+[FilterPrice]="Filter"
+(ProductBought)="OnProductBought($event)">
 </app-products>

@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand">
+      ITI Store
+    </a>
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a routerLink="/home" routerLinkActive="active" class="nav-link">
+          Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/products" routerLinkActive="active" class="nav-link">
+          Products
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/about" routerLinkActive="active" class="nav-link">
+          About
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/contact" routerLinkActive="active" class="nav-link">
+          Contact
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<button class="btn btn-success me-2" (click)="Login()"> Login </button>
+
+<button class="btn btn-danger" (click)="Logout()"> Logout </button>
+
+<p *ngIf="authService.isUserLogged()">
+Logged In
+</p>
+
+<p *ngIf="!authService.isUserLogged()">
+Logged Out
+</p>
+
+<img src="/banner.jpg" class="img-fluid w-100" alt="Banner">

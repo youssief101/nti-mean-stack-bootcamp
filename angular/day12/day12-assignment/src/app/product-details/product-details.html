@@ -1,0 +1,13 @@
+<div class="container mt-4">
+    <h2>Product Details</h2>
+    <div class="card" style="width:22rem">
+        <img class="card-img-top" [src]="Product.Img">
+        <div class="card-body">
+            <h4>{{Product.Name}}</h4>
+            <p>ID : {{Product.ID}}</p>
+            <p>Price : {{Product.Price | currency:'EGP'}}</p>
+            <p>Quantity : {{Product.Quantity}}</p>
+            <p>Category : {{Product.CategoryID}}</p>
+        </div>
+    </div>
+</div>
